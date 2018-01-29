@@ -10,6 +10,18 @@ public class Simon extends AppCompatActivity {
 
     protected static final String EXTRA_MISSATGE = "Simon";
 
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_simon);
+
+        Intent intent = getIntent();
+        String info = intent.getStringExtra(EXTRA_MISSATGE);
+        System.out.println(info);
+
+
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,9 +54,15 @@ public class Simon extends AppCompatActivity {
         switch (view) {
             case "home":
                 setContentView(R.layout.activity_main);
+                Intent intentMain = new Intent(this, MainActivity.class);
+                intentMain.putExtra(EXTRA_MISSATGE, "main");
+                startActivity(intentMain);
                 break;
             case "play":
                 setContentView(R.layout.activity_simon);
+                Intent intentPlay = new Intent(this, Simon.class);
+                intentPlay.putExtra(EXTRA_MISSATGE, "play");
+                startActivity(intentPlay);
                 break;
             case "ayuda":
                 //TODO crear vista de ayuda??
