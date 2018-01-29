@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "dam2.simon"
+        applicationId "dam2.Simon"
         minSdkVersion 24
         targetSdkVersion 27
         versionCode 1

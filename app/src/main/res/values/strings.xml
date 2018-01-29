@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">simon</string>
+    <string name="app_name">Simon</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="home">Home</string>
+    <string name="play">Play</string>
+
+
 </resources>

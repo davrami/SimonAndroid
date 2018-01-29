@@ -6,16 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
-
+public class Simon extends AppCompatActivity {
 
     protected static final String EXTRA_MISSATGE = "Simon";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.action_bar_menu, menu);
@@ -47,18 +42,13 @@ public class MainActivity extends AppCompatActivity {
         switch (view) {
             case "home":
                 setContentView(R.layout.activity_main);
-                Intent intentMain = new Intent(this, MainActivity.class);
-                intentMain.putExtra(EXTRA_MISSATGE, "go to main activity");
-                startActivity(intentMain);
-
                 break;
             case "play":
                 setContentView(R.layout.activity_simon);
                 break;
-
             case "ayuda":
                 //TODO crear vista de ayuda??
-               // setContentView(R.layout.activity_help);
+                // setContentView(R.layout.activity_help);
 
                 break;
         }
