@@ -82,6 +82,10 @@ public class Simon extends AppCompatActivity {
                 Toast.makeText(Simon.this, "You Clicked at " +shape[+ position], Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+        
         this.imageRandom = (ImageView)findViewById(R.id.imageRandom);
 
         new Timer().scheduleAtFixedRate(new TimerTask() {
