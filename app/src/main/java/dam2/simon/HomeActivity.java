@@ -1,83 +1,35 @@
 package dam2.simon;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.GridView;
-import android.widget.Toast;
 
-public class Simon extends AppCompatActivity {
-
+public class HomeActivity extends AppCompatActivity {
     private boolean isReproduint= false;
     private Intent intent;
     protected static final String EXTRA_MISSATGE = "Home";
     Button btMusic;
-    GridView grid;
 
-    String[] shape = {
-            "rect_blue",
-            "triangle_red",
-            "circle_green",
-
-            "circle_red",
-            "rect_yellow",
-            "triangle_green",
-
-            "triangle_yellow",
-            "circle_blue",
-            "rect_red",
-
-            "rect_green",
-            "triangle_blue",
-            "circle_yellow",
-    } ;
-    int[] imageId = {
-            R.drawable.rect_blue,
-            R.drawable.triangle_red,
-            R.drawable.circle_green,
-
-            R.drawable.circle_red,
-            R.drawable.rect_yellow,
-            R.drawable.triangle_green,
-
-            R.drawable.triangle_yellow,
-            R.drawable.circle_blue,
-            R.drawable.rect_red,
-
-            R.drawable.rect_green,
-            R.drawable.triangle_blue,
-            R.drawable.circle_yellow,
-
-    };
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_simon);
+        setContentView(R.layout.activity_home);
 
-        Intent intent = getIntent();
-        String info = intent.getStringExtra(EXTRA_MISSATGE);
-        System.out.println(info);
-
-        CustomGrid adapter = new CustomGrid(Simon.this, shape, imageId);
-        grid=(GridView)findViewById(R.id.grid);
-        grid.setAdapter(adapter);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(Simon.this, "You Clicked at " +shape[+ position], Toast.LENGTH_SHORT).show();
-            }
-        });
+        intent = new Intent(this, UtilityMusic.class);
+        intent.putExtra("operacio", "inici");
+        //startService(intent);
+        this.btMusic  = findViewById(R.id.music);
 
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -151,4 +103,6 @@ public class Simon extends AppCompatActivity {
         }
 
     }
+
+
 }

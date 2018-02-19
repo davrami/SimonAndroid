@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView rectTest2 = (ImageView) findViewById(R.id.rectTest2);
         ImageView rectTest3 = (ImageView) findViewById(R.id.rectTest3);
         ImageView rectTest4 = (ImageView) findViewById(R.id.rectTest4);
-        Button btPlay = (Button) findViewById(R.id.btPlay);
+        Button btGo = (Button) findViewById(R.id.btGo);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -65,26 +65,26 @@ public class MainActivity extends AppCompatActivity {
             anim4.setDuration(2500);
             anim4.start();
 
-            ObjectAnimator anim5 = ObjectAnimator.ofFloat(btPlay, "alpha", 0f, 1f);
+            ObjectAnimator anim5 = ObjectAnimator.ofFloat(btGo, "alpha", 0f, 1f);
             anim5.setStartDelay(1200);
             anim5.setDuration(3000);
             anim5.start();
         }else{
-            ObjectAnimator anim5 = ObjectAnimator.ofFloat(btPlay, "alpha", 0f, 1f);
+            ObjectAnimator anim5 = ObjectAnimator.ofFloat(btGo, "alpha", 0f, 1f);
             anim5.setDuration(0);
             anim5.start();
         }
 
-        btPlay.setOnClickListener(new View.OnClickListener() {
+        btGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obrirActivity("play");
+                obrirActivity("home");
             }
         });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_bar_menu, menu);
+        //getMenuInflater().inflate(R.menu.action_bar_menu, menu);
         return true;
     }
 
@@ -112,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view) {
             case "home":
-                setContentView(R.layout.activity_main);
-                Intent intentMain = new Intent(this, MainActivity.class);
-                intentMain.putExtra(EXTRA_MISSATGE, "main");
+                setContentView(R.layout.activity_home);
+                Intent intentMain = new Intent(this, HomeActivity.class);
+                intentMain.putExtra(EXTRA_MISSATGE, "home");
                 startActivity(intentMain);
 
                 break;

@@ -67,7 +67,8 @@
         app:srcCompat="@android:color/holo_red_dark" />
 
     <Button
-        android:id="@+id/btPlay"
+        android:id="@+id/btGo"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_marginBottom="5dp"
@@ -75,11 +76,10 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:alpha="0"
-        android:text="Play"
+        android:text="GO!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/Widget.AppCompat.Button.Borderless"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
