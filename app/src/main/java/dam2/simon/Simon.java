@@ -85,7 +85,7 @@ public class Simon extends AppCompatActivity {
 
 
 
-        
+
         this.imageRandom = (ImageView)findViewById(R.id.imageRandom);
 
         new Timer().scheduleAtFixedRate(new TimerTask() {
