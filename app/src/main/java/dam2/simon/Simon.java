@@ -1,8 +1,10 @@
 package dam2.simon;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +12,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Simon extends AppCompatActivity {
 
@@ -19,6 +25,7 @@ public class Simon extends AppCompatActivity {
     protected static final String EXTRA_MISSATGE = "Home";
     Button btMusic;
     GridView grid;
+    ImageView imageRandom;
 
     String[] shape = {
             "rect_blue",
@@ -75,6 +82,28 @@ public class Simon extends AppCompatActivity {
                 Toast.makeText(Simon.this, "You Clicked at " +shape[+ position], Toast.LENGTH_SHORT).show();
             }
         });
+        this.imageRandom = (ImageView)findViewById(R.id.imageRandom);
+
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int numero = (int) (Math.random()*imageId.length);
+                        imageRandom.setImageResource(imageId[numero]);
+                    }
+                });
+            }
+        }, 0, 5000);
+
+
+
+
+
+
+
+
 
 
     }
