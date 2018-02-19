@@ -26,6 +26,10 @@ public class Simon extends AppCompatActivity {
     Button btMusic;
     GridView grid;
     ImageView imageRandom;
+    int count;
+    Timer timer;
+    Button btStop;
+    Button btStart;
 
     String[] shape = {
             "rect_blue",
@@ -71,6 +75,8 @@ public class Simon extends AppCompatActivity {
         String info = intent.getStringExtra(EXTRA_MISSATGE);
         System.out.println(info);
 
+
+
         CustomGrid adapter = new CustomGrid(Simon.this, shape, imageId);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
@@ -84,29 +90,43 @@ public class Simon extends AppCompatActivity {
         });
 
 
+        btStart = (Button)findViewById(R.id.btStart);
+        btStart.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
 
+                                       }
+                                   });
+
+        btStop = (Button) findViewById(R.id.btStop);
+        btStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timer.cancel();
+            }
+        });
 
         this.imageRandom = (ImageView)findViewById(R.id.imageRandom);
-
-        new Timer().scheduleAtFixedRate(new TimerTask() {
+        this.count = 0;
+        this.timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         int numero = (int) (Math.random()*imageId.length);
+
+                        if(count > 25){
+                          timer.cancel();
+                        }
                         imageRandom.setImageResource(imageId[numero]);
+                        count++;
                     }
                 });
+
             }
-        }, 0, 5000);
-
-
-
-
-
-
-
+        }, 0, 2000);
 
 
 
