@@ -26,6 +26,8 @@ public class Simon extends AppCompatActivity {
     Button btMusic;
     GridView grid;
     ImageView imageRandom;
+    int count;
+    Timer timer;
 
     String[] shape = {
             "rect_blue",
@@ -85,28 +87,28 @@ public class Simon extends AppCompatActivity {
 
 
 
-        
-        this.imageRandom = (ImageView)findViewById(R.id.imageRandom);
 
-        new Timer().scheduleAtFixedRate(new TimerTask() {
+        this.imageRandom = (ImageView)findViewById(R.id.imageRandom);
+        this.count = 0;
+        this.timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         int numero = (int) (Math.random()*imageId.length);
+
+                        if(count > 5){
+                          timer.cancel();
+                        }
                         imageRandom.setImageResource(imageId[numero]);
+                        count++;
                     }
                 });
+
             }
-        }, 0, 5000);
-
-
-
-
-
-
-
+        }, 0, 2000);
 
 
 
