@@ -146,7 +146,6 @@ public class Simon extends AppCompatActivity {
             case "ayuda":
                 //TODO crear vista de ayuda??
                 // setContentView(R.layout.activity_help);
-
                 break;
         }
 
