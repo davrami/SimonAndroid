@@ -33,7 +33,7 @@
         </activity>
         -->
 
-        <activity android:name=".Simon" />
+        <activity android:name=".Simon" android:parentActivityName=".HomeActivity" />
         <activity android:name=".HomeActivity"></activity>
         <service android:enabled="true" android:name=".UtilityMusic" />
 

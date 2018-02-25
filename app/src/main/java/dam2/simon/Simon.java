@@ -21,51 +21,18 @@ import java.util.TimerTask;
 public class Simon extends AppCompatActivity {
 
     private boolean isReproduint= false;
-    private Intent intent;
+    public Intent intent;
     protected static final String EXTRA_MISSATGE = "Home";
     Button btMusic;
     GridView grid;
     ImageView imageRandom;
     int count;
-    Timer timer;
+    public Timer timer;
     Button btStop;
     Button btStart;
 
-    String[] shape = {
-            "rect_blue",
-            "triangle_red",
-            "circle_green",
-
-            "circle_red",
-            "rect_yellow",
-            "triangle_green",
-
-            "triangle_yellow",
-            "circle_blue",
-            "rect_red",
-
-            "rect_green",
-            "triangle_blue",
-            "circle_yellow",
-    } ;
-    int[] imageId = {
-            R.drawable.rect_blue,
-            R.drawable.triangle_red,
-            R.drawable.circle_green,
-
-            R.drawable.circle_red,
-            R.drawable.rect_yellow,
-            R.drawable.triangle_green,
-
-            R.drawable.triangle_yellow,
-            R.drawable.circle_blue,
-            R.drawable.rect_red,
-
-            R.drawable.rect_green,
-            R.drawable.triangle_blue,
-            R.drawable.circle_yellow,
-
-    };
+    String[] shape = UtilityGame.shape; //hacemos la lista estática para reutilizarla
+    int[] imageId = UtilityGame.imageId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +53,10 @@ public class Simon extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Toast.makeText(Simon.this, "You Clicked at " +shape[+ position], Toast.LENGTH_SHORT).show();
+                //TODO reproducir sonido corres pondiente
+
+                UtilityGame.playSong(getBaseContext() , String.valueOf(position));
+
             }
         });
 
@@ -115,6 +86,7 @@ public class Simon extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        //TODO get level
                         int numero = (int) (Math.random()*imageId.length);
 
                         if(count > 25){
@@ -132,51 +104,7 @@ public class Simon extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_bar_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                obrirActivity("home");
-                return true;
-            case R.id.play:
-                obrirActivity("play");
-                return true;
-            case R.id.ayuda:
-                obrirActivity("ayuda");
-                return true;
-            case R.id.music:
-                String text;
-                if (!isReproduint) {
-                    text = "Pausant Audio";
-
-                    //btMusic.setImageResource(android.R.drawable.ic_media_play);
-                    this.intent.putExtra("operacio", "inici");
-                    startService(intent);
-                    System.out.println("inici");
-                    isReproduint = !isReproduint;
-                    item.setIcon(android.R.drawable.ic_lock_silent_mode_off);
-                } else {
-                    text = "Reproduint Audio";
-                    // btMusic.setImageResource(android.R.drawable.ic_media_pause);
-                    this.intent.putExtra("operacio", "pausa");
-                    System.out.println("pausa");
-                    startService(intent);
-                    isReproduint = !isReproduint;
-                    item.setIcon(android.R.drawable.ic_lock_silent_mode);
-
-                }
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void obrirActivity(String view) {
 
