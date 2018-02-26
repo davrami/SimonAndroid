@@ -10,7 +10,7 @@
         android:id="@+id/grid"
         android:layout_width="336dp"
         android:layout_height="240dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="72dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:columnWidth="90dp"
@@ -32,31 +32,54 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/grid"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.563" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewGameOver"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Play!"
+        app:layout_constraintBottom_toBottomOf="@+id/imageRandom"
+        app:layout_constraintEnd_toEndOf="@+id/imageRandom"
+        app:layout_constraintStart_toStartOf="@+id/imageRandom"
+        app:layout_constraintTop_toTopOf="@+id/imageRandom" />
+
+    <TextView
+        android:id="@+id/textViewGameOver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="btStart"
-        app:layout_constraintEnd_toStartOf="@+id/btStop"
-        app:layout_constraintHorizontal_bias="0.86"
+        android:text="GAME OVER"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btStop"
+    <TextView
+        android:id="@+id/textPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginTop="16dp"
-        android:text="btStop"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:shadowColor="@android:color/background_light"
+        android:text="Points: "
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageRandom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

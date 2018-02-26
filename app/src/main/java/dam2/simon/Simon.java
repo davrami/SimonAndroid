@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -27,6 +28,9 @@ public class Simon extends AppCompatActivity {
     public Timer timer;
     Button btStop;
     Button btStart;
+    public TextView textGameOver;
+    public TextView textPoints;
+
 
     String[] shape = UtilityGame.shape; //hacemos la lista estática para reutilizarla
     int[] imageId = UtilityGame.imageId;
@@ -43,6 +47,9 @@ public class Simon extends AppCompatActivity {
         CustomGrid adapter = new CustomGrid(Simon.this, shape, imageId);
         grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(adapter);
+        this.textGameOver = (TextView) findViewById(R.id.textViewGameOver);
+        this.textPoints = (TextView) findViewById(R.id.textPoints);
+
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -64,16 +71,12 @@ public class Simon extends AppCompatActivity {
                 game = null;
                 game = new Game(new Date());
                 game.init(Simon.this);
+                btStart.setVisibility(View.INVISIBLE);
+                textGameOver.setVisibility(View.INVISIBLE);
+
             }
         });
 
-        btStop = (Button) findViewById(R.id.btStop);
-        btStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                timer.cancel();
-            }
-        });
 /*
         this.count = 0;
         this.timer = new Timer();
@@ -101,8 +104,13 @@ public class Simon extends AppCompatActivity {
 
     }
     public void gameOver(){
-        //save points and reset game
+        //TODO save points and reset game
+
+        this.textGameOver.setVisibility(View.VISIBLE);
+        Toast.makeText(this, "GAME OVER", Toast.LENGTH_SHORT).show();
         this.game =  new Game(new Date());
+        btStart.setVisibility(View.VISIBLE);
+
     }
 
     private void obrirActivity(String view) {
