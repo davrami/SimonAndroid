@@ -35,7 +35,6 @@ public class Lista_Puntuacion extends ArrayAdapter<Info_Puntuacion> {
 
         Info_Puntuacion artist = artistes.get(position);
         nom.setText(artist.getNom());
-        genere.setText(artist.getGenere());
 
         return listViewItem;
     }

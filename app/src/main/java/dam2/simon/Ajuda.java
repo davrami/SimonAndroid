@@ -2,61 +2,51 @@ package dam2.simon;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+/**
+ * Created by Gerard on 26/02/2018.
+ */
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class HomeActivity extends AppCompatActivity{
+public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteractionListener, fr2.OnFragmentInteractionListener{
     private boolean isReproduint= false;
     private Intent intent;
     protected static final String EXTRA_MISSATGE = "Home";
     Button btMusic;
-    public static final String NOM = "dam2.fje.edu.nom";
-    public static final String ID = "dam2.fje.edu.id";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.ajuda);
 
         intent = new Intent(this, UtilityMusic.class);
         intent.putExtra("operacio", "inici");
         //startService(intent);
         this.btMusic  = findViewById(R.id.music);
 
-        TextView texto = (TextView) findViewById(R.id.textView);
-        Animation animacion = AnimationUtils.loadAnimation(this,
-                R.anim.animacion);
-        texto.startAnimation(animacion);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            fr2 fragmento2 = new fr2();
+            this.getFragmentManager().beginTransaction()
+                    .replace(R.id.contenedor, fragmento2, null)
+                    .addToBackStack(null)
+                    .commit();
+        }else{
+            fr1 fragmento1= new fr1();
+            this.getFragmentManager().beginTransaction()
+                    .replace(R.id.contenedor, fragmento1, null)
+                    .addToBackStack(null)
+                    .commit();
+        }
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,15 +114,15 @@ public class HomeActivity extends AppCompatActivity{
                 break;
             case "ayuda":
                 //TODO crear vista de ayuda??
-                setContentView(R.layout.ajuda);
-                Intent intentAjuda = new Intent(this, Ajuda.class);
-                intentAjuda.putExtra(EXTRA_MISSATGE, "play");
-                startActivity(intentAjuda);
+                // setContentView(R.layout.activity_help);
 
                 break;
         }
 
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
+    }
 }

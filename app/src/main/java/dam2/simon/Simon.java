@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
 import java.util.Timer;
@@ -30,7 +34,7 @@ public class Simon extends AppCompatActivity {
     Button btStart;
     public TextView textGameOver;
     public TextView textPoints;
-
+    DatabaseReference DBArtistes;
 
     String[] shape = UtilityGame.shape; //hacemos la lista estática para reutilizarla
     int[] imageId = UtilityGame.imageId;
@@ -105,12 +109,32 @@ public class Simon extends AppCompatActivity {
     }
     public void gameOver(){
         //TODO save points and reset game
-
+        int puntuacio = this.game.getPoints();
+        AfegirDades(puntuacio);
         this.textGameOver.setVisibility(View.VISIBLE);
         Toast.makeText(this, "GAME OVER", Toast.LENGTH_SHORT).show();
         this.game =  new Game(new Date());
         btStart.setVisibility(View.VISIBLE);
 
+
+    }
+
+    public void AfegirDades(int puntuacio){
+        String nom = UtilityGame.Username;
+        DBArtistes = FirebaseDatabase.getInstance().getReference("puntuaciones");
+
+        if (!TextUtils.isEmpty(nom)) {
+
+            String id = DBArtistes.push().getKey();
+
+            Info_Puntuacion artista = new Info_Puntuacion(puntuacio, nom);
+
+            DBArtistes.child(id).setValue(artista);
+
+            Toast.makeText(this, "Artista afegit", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Cal entrar un nom", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void obrirActivity(String view) {

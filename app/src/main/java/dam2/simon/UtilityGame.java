@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.widget.AdapterView;
 
 public abstract class UtilityGame {
+    public static String Username ="Pepe";
     public static String[] shape = {
             "rect_blue",
             "triangle_red",

@@ -62,7 +62,7 @@ public class Puntuacion extends AppCompatActivity {
         afegirArtista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                afegirArtista();
+                //afegirArtista();
             }
         });
 
@@ -103,7 +103,7 @@ public class Puntuacion extends AppCompatActivity {
             }
         });
     }
-
+/*
     private void afegirArtista() {
         String nom = this.nom.getText().toString().trim();
         String genere = this.genere.getSelectedItem().toString();
@@ -112,7 +112,7 @@ public class Puntuacion extends AppCompatActivity {
 
             String id = DBArtistes.push().getKey();
 
-            Info_Puntuacion artista = new Info_Puntuacion(id, nom, genere);
+            Info_Puntuacion artista = new Info_Puntuacion(id, nom);
 
             DBArtistes.child(id).setValue(artista);
 
@@ -123,4 +123,5 @@ public class Puntuacion extends AppCompatActivity {
             Toast.makeText(this, "Cal entrar un nom", Toast.LENGTH_LONG).show();
         }
     }
+    */
 }

@@ -11,20 +11,18 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Info_Puntuacion {
 
 
-    private String id;
+    private int id;
     private String nom;
-    private String genere;
 
     public Info_Puntuacion(){
     }
 
-    public Info_Puntuacion(String id, String nom, String genere) {
+    public Info_Puntuacion(int id, String nom) {
         this.id = id;
         this.nom = nom;
-        this.genere = genere;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -32,7 +30,4 @@ public class Info_Puntuacion {
         return nom;
     }
 
-    public String getGenere() {
-        return genere;
-    }
 }
