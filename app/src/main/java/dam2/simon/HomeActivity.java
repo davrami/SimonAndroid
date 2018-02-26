@@ -11,7 +11,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity implements fr1.OnFragmentInteractionListener, fr2.OnFragmentInteractionListener{
     private boolean isReproduint= false;
@@ -42,7 +45,10 @@ public class HomeActivity extends AppCompatActivity implements fr1.OnFragmentInt
                     .addToBackStack(null)
                     .commit();
         }
-
+        TextView texto = (TextView) findViewById(R.id.textView);
+        Animation animacion = AnimationUtils.loadAnimation(this,
+                R.anim.animacion);
+        texto.startAnimation(animacion);
     }
 
 
