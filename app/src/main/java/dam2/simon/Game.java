@@ -24,7 +24,7 @@ public class Game {
     private Simon simonView;
     public Timer timer;
     public Integer i;
-    public Boolean canResponse;
+    public static Boolean canResponse = false;
 
     public Game(Date date) {
         this.date = date;
@@ -81,10 +81,16 @@ public class Game {
         System.out.println(levelName);
         this.levelList.add(levelName);
         this.simonView = simon;
+        simonView.textPoints.setText("Points: " + String.valueOf(this.getPoints()));
+
         playLevelList();
     }
 
     public void playLevelList() {
+        this.canResponse = false;
+        Snackbar.make(simonView.findViewById(android.R.id.content), "Level: " + getLevel(),
+                Snackbar.LENGTH_SHORT)
+                .show();
         this.i = 0;
         this.timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -101,10 +107,9 @@ public class Game {
                             simonView.imageRandom.setImageResource(UtilityGame.imageId[index]);
                             UtilityGame.playSong(simonView.getBaseContext(), index);
                             //Toast.makeText(simonView, "level " + getLevel(), Toast.LENGTH_SHORT).show();
-                            Snackbar.make(simonView.findViewById(android.R.id.content), "Level: " + getLevel(),
-                                    Snackbar.LENGTH_SHORT)
-                                    .show();
+
                             i++;
+
                         } else {
                             timer.cancel();
                             timer.purge();
@@ -117,7 +122,7 @@ public class Game {
                 });
 
             }
-        }, 3000, 2000);
+        }, 2000, 1500);
 
         //addLevel();
     }
@@ -129,33 +134,43 @@ public class Game {
         //Toast.makeText(this.simonView, "level "+getLevel(), Toast.LENGTH_SHORT).show();
         playLevelList();
     }
-    public void listenResponse(){
+
+    public void listenResponse() {
         this.canResponse = true;
         Toast.makeText(this.simonView, "Your turn!", Toast.LENGTH_SHORT).show();
 
     }
-    
-    public void clickElement(int position){
-        if(this.canResponse){
-           //TODO check
-            // if ok add level
-            int index = this.responseClickList.size();
-            String correctShape = this.levelList.get(index);
-            String responseClick = UtilityGame.shape[position];
 
-            if(responseClick.equals(correctShape)){
-                //correcta
-                this.responseClickList.add(responseClick);
-                if(this.responseClickList.size() == this.levelList.size()){
-                    addLevel();
+    public void clickElement(int position) {
+
+        if (this.canResponse) {
+            //TODO check
+            // if ok add level
+            try {
+                int index = this.responseClickList.size();
+                String correctShape = this.levelList.get(index);
+                String responseClick = UtilityGame.shape[position];
+
+                if (responseClick.equals(correctShape)) {
+                    //correcta
+
+                    this.responseClickList.add(responseClick);
+                    if (this.responseClickList.size() == this.levelList.size()) {
+                        this.setPoints(this.getPoints() + 100);
+                        simonView.textPoints.setText("Points: " + String.valueOf(this.getPoints()));
+                        addLevel();
+                    }
+                } else { //incorrecta
+                    this.simonView.gameOver();
                 }
-            }else{ //incorrecta
-               this.simonView.gameOver();
-                Toast.makeText(this.simonView, "GAME OVER", Toast.LENGTH_SHORT).show();
+
+
+            } catch (Exception e) {
 
             }
 
-        }else{
+
+        } else {
             Toast.makeText(this.simonView, "wait...", Toast.LENGTH_SHORT).show();
         }
     }
