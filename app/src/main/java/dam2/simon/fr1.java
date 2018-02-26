@@ -29,6 +29,7 @@ public class fr1 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
     public fr1() {
         // Required empty public constructor
     }
@@ -58,6 +59,7 @@ public class fr1 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override

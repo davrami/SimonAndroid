@@ -19,13 +19,18 @@
             android:layout_alignParentStart="true" />
 
         <Button
+            android:id="@+id/afegir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Afegir" />
 
-        <Button
+
+        <EditText
+            android:id="@+id/edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
     </LinearLayout>
 </FrameLayout>
