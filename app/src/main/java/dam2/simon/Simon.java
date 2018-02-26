@@ -15,18 +15,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Simon extends AppCompatActivity {
-
-    private boolean isReproduint= false;
-    public Intent intent;
     protected static final String EXTRA_MISSATGE = "Home";
-    Button btMusic;
+    public Game game;
     GridView grid;
     ImageView imageRandom;
-    int count;
     public Timer timer;
     Button btStop;
     Button btStart;
@@ -41,33 +38,34 @@ public class Simon extends AppCompatActivity {
         Intent intent = getIntent();
         String info = intent.getStringExtra(EXTRA_MISSATGE);
         System.out.println(info);
-
-
+        this.imageRandom = (ImageView) findViewById(R.id.imageRandom);
 
         CustomGrid adapter = new CustomGrid(Simon.this, shape, imageId);
-        grid=(GridView)findViewById(R.id.grid);
+        grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(Simon.this, "You Clicked at " +shape[+ position], Toast.LENGTH_SHORT).show();
-                //TODO reproducir sonido corres pondiente
-
-                UtilityGame.playSong(getBaseContext() , String.valueOf(position));
-
+                if(game != null){
+                    game.clickElement(position);
+                    UtilityGame.playSong(getBaseContext(), position);
+                }
             }
         });
 
 
-        btStart = (Button)findViewById(R.id.btStart);
+        btStart = (Button) findViewById(R.id.btStart);
         btStart.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
-
-                                       }
-                                   });
+            @Override
+            public void onClick(View view) {
+                /*New Game*/
+                game = null;
+                game = new Game(new Date());
+                game.init(Simon.this);
+            }
+        });
 
         btStop = (Button) findViewById(R.id.btStop);
         btStop.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +74,7 @@ public class Simon extends AppCompatActivity {
                 timer.cancel();
             }
         });
-
-        this.imageRandom = (ImageView)findViewById(R.id.imageRandom);
+/*
         this.count = 0;
         this.timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -99,16 +96,16 @@ public class Simon extends AppCompatActivity {
 
             }
         }, 0, 2000);
-
+*/
 
 
     }
-
-
+    public void gameOver(){
+        //save points and reset game
+        this.game =  new Game(new Date());
+    }
 
     private void obrirActivity(String view) {
-
-
         String classe = "";
 
         switch (view) {
@@ -129,6 +126,5 @@ public class Simon extends AppCompatActivity {
                 // setContentView(R.layout.activity_help);
                 break;
         }
-
     }
 }

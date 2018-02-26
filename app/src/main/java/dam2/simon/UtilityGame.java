@@ -1,25 +1,14 @@
 package dam2.simon;
 
-
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.AdapterView;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-
 public abstract class UtilityGame {
-    private Intent intent;
-
-    //TODO: Lista de formas con sus sonidos
-    //TODO: añadir a lista de levels un random
-    //TODO: comprobar pulsaciones usuario
-    //TODO: reproduccion sonidos teclado
     public static String[] shape = {
             "rect_blue",
             "triangle_red",
@@ -78,10 +67,15 @@ public abstract class UtilityGame {
         return (int) (Math.random()*imageId.length);
     }
 
-    //Retorna
-    public static void playSong(Context context, String idSong){
+    public static String getRandomlevel(){
+        return shape[getRandomInt()];
+    }
+
+    //Retorna el sonido de la forma
+    public static void playSong(Context context, Integer idSong){
         MediaPlayer mp;
-        mp = MediaPlayer.create(context, songId[Integer.parseInt(idSong)]);
+
+        mp = MediaPlayer.create(context, songId[idSong]);
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
             @Override
@@ -90,20 +84,13 @@ public abstract class UtilityGame {
                 mp.release();
                 mp=null;
             }
-
         });
         mp.start();
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+ idSong);
     }
-
-
-
 
     //Reproduce sonido de la forma
     public static class PlaySong extends IntentService {
-
         private MediaPlayer mp;
-
 
         public PlaySong(AdapterView.OnItemClickListener onItemClickListener, long id) {
             super("serveiAudioFormes");
@@ -125,7 +112,6 @@ public abstract class UtilityGame {
             if (intent != null) {
                 String idSonifo = intent.getStringExtra("forma");
                 int index = java.util.Arrays.asList(shape).indexOf(idSonifo);
-
             }
             return START_NOT_STICKY;
         }

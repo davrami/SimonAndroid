@@ -17,8 +17,6 @@ import android.widget.Toolbar;
 public class UtilityMusic extends IntentService {
 
     private MediaPlayer mp;
-
-
     public UtilityMusic() {
         super("serveiAudio");
     }

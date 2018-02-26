@@ -2,6 +2,8 @@ package dam2.simon;
 
 
 import android.graphics.drawable.Icon;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -83,8 +85,6 @@ public class Game {
     }
 
     public void playLevelList() {
-
-
         this.i = 0;
         this.timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -100,8 +100,10 @@ public class Game {
                             int index = java.util.Arrays.asList(UtilityGame.shape).indexOf(level);
                             simonView.imageRandom.setImageResource(UtilityGame.imageId[index]);
                             UtilityGame.playSong(simonView.getBaseContext(), index);
-                            Toast.makeText(simonView, "level " + getLevel(), Toast.LENGTH_SHORT).show();
-
+                            //Toast.makeText(simonView, "level " + getLevel(), Toast.LENGTH_SHORT).show();
+                            Snackbar.make(simonView.findViewById(android.R.id.content), "Level: " + getLevel(),
+                                    Snackbar.LENGTH_SHORT)
+                                    .show();
                             i++;
                         } else {
                             timer.cancel();

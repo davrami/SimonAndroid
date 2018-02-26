@@ -31,9 +31,13 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(info);
 
         ImageView rectTest = (ImageView) findViewById(R.id.rectTest);
+        rectTest.setImageResource(R.drawable.rect_red);
         ImageView rectTest2 = (ImageView) findViewById(R.id.rectTest2);
+        rectTest2.setImageResource(R.drawable.circle_green);
         ImageView rectTest3 = (ImageView) findViewById(R.id.rectTest3);
+        rectTest3.setImageResource(R.drawable.triangle_yellow);
         ImageView rectTest4 = (ImageView) findViewById(R.id.rectTest4);
+        rectTest4.setImageResource(R.drawable.circle_blue);
         Button btGo = (Button) findViewById(R.id.btGo);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
