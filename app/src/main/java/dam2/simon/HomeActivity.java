@@ -1,7 +1,9 @@
 package dam2.simon;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements fr1.OnFragmentInteractionListener, fr2.OnFragmentInteractionListener{
     private boolean isReproduint= false;
     private Intent intent;
     protected static final String EXTRA_MISSATGE = "Home";
@@ -27,6 +29,19 @@ public class HomeActivity extends AppCompatActivity {
         //startService(intent);
         this.btMusic  = findViewById(R.id.music);
 
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            fr2 fragmento2 = new fr2();
+            this.getFragmentManager().beginTransaction()
+                    .replace(R.id.contenedor, fragmento2, null)
+                    .addToBackStack(null)
+                    .commit();
+        }else{
+            fr1 fragmento1= new fr1();
+            this.getFragmentManager().beginTransaction()
+                    .replace(R.id.contenedor, fragmento1, null)
+                    .addToBackStack(null)
+                    .commit();
+        }
 
     }
 
@@ -104,5 +119,8 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
+    }
 }
