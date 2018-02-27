@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="228dp"
             android:layout_height="264dp"
-            android:src="@android:drawable/btn_star" />
+            android:src="/" />
 
         <Button
             android:id="@+id/afegir"

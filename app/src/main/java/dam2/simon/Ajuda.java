@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -21,6 +22,7 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
     private Intent intent;
     protected static final String EXTRA_MISSATGE = "Home";
     Button btMusic;
+    ImageView imageHelp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
                     .addToBackStack(null)
                     .commit();
         }
+        this.imageHelp = (ImageView) findViewById(R.id.imageRandom);
 
     }
 
