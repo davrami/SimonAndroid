@@ -63,8 +63,13 @@ public class HomeActivity extends AppCompatActivity{
         btJug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UtilityGame.Username = UserNom.getText().toString();
-                obrirActivity("play");
+                if(UserNom.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"Escribe un nombre", Toast.LENGTH_LONG).show();
+                }else{
+                    UtilityGame.Username = UserNom.getText().toString();
+                    obrirActivity("play");
+                }
+
             }
         });
 

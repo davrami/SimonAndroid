@@ -11,28 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-            <ListView
-                android:id="@+id/resultats2"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" />
+        <ImageView
+            android:layout_width="228dp"
+            android:layout_height="264dp"
+            android:src="@android:drawable/btn_star" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <Button
-                android:id="@+id/button"
+                android:id="@+id/afegir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="Afegir" />
 
-            <Button
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="TextView" />
         </LinearLayout>
 
 
