@@ -35,7 +35,6 @@
 
         <activity android:name=".Simon" android:parentActivityName=".HomeActivity" />
         <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".Puntuacion"></activity>
         <activity android:name=".Ajuda"></activity>
         <service android:enabled="true" android:name=".UtilityMusic" />
 

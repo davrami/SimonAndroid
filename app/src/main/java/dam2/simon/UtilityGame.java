@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.widget.AdapterView;
 
 public abstract class UtilityGame {
-    public static String Username ="Pepe";
+    public static String Username ="Pepe2";
     public static String[] shape = {
             "rect_blue",
             "triangle_red",

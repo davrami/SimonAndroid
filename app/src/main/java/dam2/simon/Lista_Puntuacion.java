@@ -1,6 +1,7 @@
 package dam2.simon;
 
 import android.app.Activity;
+import android.icu.text.IDNA;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class Lista_Puntuacion extends ArrayAdapter<Info_Puntuacion> {
 
         Info_Puntuacion artist = artistes.get(position);
         nom.setText(artist.getNom());
+        genere.setText("Puntuación:" + artist.getId() + " puntos");
 
         return listViewItem;
     }

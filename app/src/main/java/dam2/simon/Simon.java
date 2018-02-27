@@ -127,9 +127,9 @@ public class Simon extends AppCompatActivity {
 
             String id = DBArtistes.push().getKey();
 
-            Info_Puntuacion artista = new Info_Puntuacion(puntuacio, nom);
+            Info_Puntuacion puntuacion_act = new Info_Puntuacion(puntuacio, nom);
 
-            DBArtistes.child(id).setValue(artista);
+            DBArtistes.child(id).setValue(puntuacion_act);
 
             Toast.makeText(this, "Artista afegit", Toast.LENGTH_LONG).show();
         } else {

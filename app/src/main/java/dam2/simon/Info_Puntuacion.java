@@ -10,7 +10,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Info_Puntuacion {
 
-
     private int id;
     private String nom;
 

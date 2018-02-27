@@ -3,6 +3,7 @@ package dam2.simon;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.icu.text.IDNA;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -38,7 +39,10 @@ public class HomeActivity extends AppCompatActivity{
     Button btMusic;
     public static final String NOM = "dam2.fje.edu.nom";
     public static final String ID = "dam2.fje.edu.id";
-
+    List<Info_Puntuacion> artistes;
+    ListView llistaArtistes;
+    DatabaseReference DBArtistes;
+    EditText UserNom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +58,45 @@ public class HomeActivity extends AppCompatActivity{
         Animation animacion = AnimationUtils.loadAnimation(this,
                 R.anim.animacion);
         texto.startAnimation(animacion);
+        UserNom = (EditText) findViewById(R.id.UserName_Ed);
+        Button btJug = (Button) findViewById(R.id.Bot_Jug);
+        btJug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UtilityGame.Username = UserNom.getText().toString();
+                obrirActivity("play");
+            }
+        });
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        DBArtistes = FirebaseDatabase.getInstance().getReference("puntuaciones");
+        llistaArtistes = (ListView) findViewById(R.id.llistatPuntuacions);
+        artistes = new ArrayList<>();
+        DBArtistes.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                artistes.clear();
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Info_Puntuacion artista = postSnapshot.getValue(Info_Puntuacion.class);
+                    artistes.add(artista);
+                }
+
+                Lista_Puntuacion artistaAdapter = new Lista_Puntuacion(HomeActivity.this, artistes);
+                llistaArtistes.setAdapter(artistaAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
