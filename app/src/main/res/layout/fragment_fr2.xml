@@ -26,14 +26,14 @@
                 android:id="@+id/afegir2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Afegir" />
+                android:text="Siguiente" />
 
             <TextView
                 android:id="@+id/Textajuda2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Una vez estas en la pantalla de inicio,
-            para empezar a jugar tienes que hacer clic sobre play" />
+                android:text="Horizontal:\nUna vez estas en la pantalla de inicio, para empezar a jugar tienes que hacer clic sobre play"
+                android:textSize="18sp" />
         </LinearLayout>
 
 

@@ -80,20 +80,17 @@ public class fr2 extends Fragment {
             public void onClick(View v) {
                 if(cont2 == 0){
                     imageHelp2.setImageResource(R.drawable.img2);
-                    ajuda2.setText("Van saliendo imagenes, aleatoriamente, y cuando termina,\n" +
-                            "tienes que repetir el proceso");
+                    ajuda2.setText("Horizontal: \nVan saliendo imagenes, aleatoriamente, y cuando termina, tienes que repetir el proceso");
                     cont2 = 1;
                 }else if(cont2 ==1){
-                    afegir2.setText("Inici");
+                    afegir2.setText("Inicio");
                     imageHelp2.setImageResource(R.drawable.img3);
-                    ajuda2.setText("En caso que falles, habrá terminado la partida,\n" +
-                            "y se registrará tu puntuación");
+                    ajuda2.setText("Horizontal: \nEn caso que falles, habrá terminado la partida, y se registrará tu puntuación");
                     cont2=2;
                 }else{
-                    afegir2.setText("Següent");
+                    afegir2.setText("Siguiente");
                     imageHelp2.setImageResource(R.drawable.img1);
-                    ajuda2.setText("Una vez estas en la pantalla de inicio,\n" +
-                            "            para empezar a jugar tienes que hacer clic sobre play");
+                    ajuda2.setText("Horizontal:\nUna vez estas en la pantalla de inicio, para empezar a jugar tienes que hacer clic sobre play");
                     cont2=0;
                 }
             }
