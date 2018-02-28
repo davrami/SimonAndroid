@@ -5,13 +5,16 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Gerard on 26/02/2018.
@@ -23,6 +26,9 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
     protected static final String EXTRA_MISSATGE = "Home";
     Button btMusic;
     ImageView imageHelp;
+    Button afegir;
+    int cont=0;
+    TextView ajuda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,9 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
                     .addToBackStack(null)
                     .commit();
         }
-        this.imageHelp = (ImageView) findViewById(R.id.imageRandom);
+
+
+
 
     }
 
@@ -128,4 +136,5 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 }

@@ -16,7 +16,10 @@
         <ImageView
             android:layout_width="228dp"
             android:layout_height="264dp"
-            android:src="/" />
+            android:src="@drawable/img1"
+            android:layout_gravity="center"
+            android:id="@+id/imageHelp"
+            />
 
         <Button
             android:id="@+id/afegir"
@@ -25,9 +28,11 @@
             android:text="Afegir" />
 
         <TextView
+            android:id="@+id/Textajuda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Una vez estas en la pantalla de inicio,
+            para empezar a jugar tienes que hacer clic sobre play" />
 
 
     </LinearLayout>

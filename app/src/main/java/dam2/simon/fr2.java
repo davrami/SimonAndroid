@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -26,6 +29,10 @@ public class fr2 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ImageView imageHelp2;
+    Button afegir2;
+    int cont2=0;
+    TextView ajuda2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +71,34 @@ public class fr2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr2, container, false);
+        View v = inflater.inflate(R.layout.fragment_fr2, container, false);
+        this.imageHelp2 = (ImageView) v.findViewById(R.id.imageHelp2);
+        this.ajuda2 = (TextView) v.findViewById(R.id.Textajuda2);
+        this.afegir2 = (Button) v.findViewById(R.id.afegir2);
+        afegir2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cont2 == 0){
+                    imageHelp2.setImageResource(R.drawable.img2);
+                    ajuda2.setText("Van saliendo imagenes, aleatoriamente, y cuando termina,\n" +
+                            "tienes que repetir el proceso");
+                    cont2 = 1;
+                }else if(cont2 ==1){
+                    afegir2.setText("Inici");
+                    imageHelp2.setImageResource(R.drawable.img3);
+                    ajuda2.setText("En caso que falles, habrá terminado la partida,\n" +
+                            "y se registrará tu puntuación");
+                    cont2=2;
+                }else{
+                    afegir2.setText("Següent");
+                    imageHelp2.setImageResource(R.drawable.img1);
+                    ajuda2.setText("Una vez estas en la pantalla de inicio,\n" +
+                            "            para empezar a jugar tienes que hacer clic sobre play");
+                    cont2=0;
+                }
+            }
+        });
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
