@@ -7,11 +7,6 @@
         android:title="@string/home"
         app:showAsAction="never" />
 
-    <item android:id="@+id/play"
-        android:title="@string/play"
-        tools:ignore="AppCompatResource"
-        app:showAsAction="never" />
-
     <item android:id="@+id/ayuda"
         android:title="@string/ayuda"
         android:showAsAction="never"
