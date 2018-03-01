@@ -4,7 +4,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
  * Classe Entitat que representa un Artista
- * Created by sergi.grau on 25/2/18.
  */
 
 @IgnoreExtraProperties

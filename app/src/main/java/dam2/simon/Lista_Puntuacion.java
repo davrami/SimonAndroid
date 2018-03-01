@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * Classe que controla la llista on es mostren els artistes
- * Created by sergi.grau on 25/2/18.
  */
 
 public class Lista_Puntuacion extends ArrayAdapter<Info_Puntuacion> {

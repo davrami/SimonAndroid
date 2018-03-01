@@ -13,6 +13,10 @@ import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 
+
+/**
+ * Clase principal amb animacions per codi
+ */
 public class MainActivity extends AppCompatActivity {
 
 

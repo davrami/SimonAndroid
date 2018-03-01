@@ -32,6 +32,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase per la vista de home activity
+ * Conté animació per xml linia 64
+ * Crida a Firebase per actualitzar la llista de dades de puntuacions
+ */
 public class HomeActivity extends AppCompatActivity{
     private boolean isReproduint= false;
     private Intent intent;

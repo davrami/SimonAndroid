@@ -11,8 +11,9 @@ import android.util.Log;
 import android.widget.Toolbar;
 
 /** Servei que hereta de IntentService per a crear un fil cada vegada que es crida.
- * Si es criden diversos passen a la cua*
- * */
+ * Si es criden diversos passen a la cua
+ * Clase utilitat per reproduir audio amb AudioManager.OnAudioFocusChange
+ * **/
 
 public class UtilityMusic extends IntentService {
 

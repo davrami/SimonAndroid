@@ -1,6 +1,7 @@
 package dam2.simon;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class Simon extends AppCompatActivity {
     public TextView textGameOver;
     public TextView textPoints;
     DatabaseReference DBArtistes;
+    private TascaAsync task;
+
 
     String[] shape = UtilityGame.shape; //hacemos la lista estática para reutilizarla
     int[] imageId = UtilityGame.imageId;
@@ -59,7 +62,7 @@ public class Simon extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if(game != null){
+                if (game != null) {
                     game.clickElement(position);
                     UtilityGame.playSong(getBaseContext(), position);
                 }
@@ -80,61 +83,21 @@ public class Simon extends AppCompatActivity {
 
             }
         });
-
-/*
-        this.count = 0;
-        this.timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //TODO get level
-                        int numero = (int) (Math.random()*imageId.length);
-
-                        if(count > 25){
-                          timer.cancel();
-                        }
-                        imageRandom.setImageResource(imageId[numero]);
-                        count++;
-                    }
-                });
-
-            }
-        }, 0, 2000);
-*/
-
-
     }
+
     public void gameOver(){
-        //TODO save points and reset game
+
         int puntuacio = this.game.getPoints();
         AfegirDades(puntuacio);
         this.textGameOver.setVisibility(View.VISIBLE);
         Toast.makeText(this, "GAME OVER", Toast.LENGTH_SHORT).show();
         this.game =  new Game(new Date());
         btStart.setVisibility(View.VISIBLE);
-
-
     }
 
     public void AfegirDades(int puntuacio){
-        String nom = UtilityGame.Username;
-        DBArtistes = FirebaseDatabase.getInstance().getReference("puntuaciones");
-
-        if (!TextUtils.isEmpty(nom)) {
-
-            String id = DBArtistes.push().getKey();
-
-            Info_Puntuacion puntuacion_act = new Info_Puntuacion(puntuacio, nom);
-
-            DBArtistes.child(id).setValue(puntuacion_act);
-
-            Toast.makeText(this, "Artista afegit", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Cal entrar un nom", Toast.LENGTH_LONG).show();
-        }
+        task = new TascaAsync();
+        task.execute(puntuacio);
     }
 
     private void obrirActivity(String view) {
@@ -159,4 +122,48 @@ public class Simon extends AppCompatActivity {
                 break;
         }
     }
+
+
+        class TascaAsync extends AsyncTask<Integer, Integer, String>
+        {
+            String TAG = getClass().getSimpleName();
+
+            protected void onPreExecute (){
+                super.onPreExecute();
+                Log.d(TAG + " PreExceute","On pre Exceute......");
+            }
+
+            protected String doInBackground(Integer...punts) {
+                Log.d(TAG + " DoINBackGround","On doInBackground...");
+                int count = punts.length;
+                for(int i=0; i<count; i++){
+                    String nom = UtilityGame.Username;
+                    DBArtistes = FirebaseDatabase.getInstance().getReference("puntuaciones");
+                    if (!TextUtils.isEmpty(nom)) {
+
+                        String id = DBArtistes.push().getKey();
+                        int puntuacio = punts[i];
+                                Info_Puntuacion puntuacion_act = new Info_Puntuacion(puntuacio, nom);
+
+                        DBArtistes.child(id).setValue(puntuacion_act);
+
+                    } else {
+                        Toast.makeText(Simon.this, "Cal entrar un nom", Toast.LENGTH_LONG).show();
+                    }
+                    publishProgress(i);
+                }
+
+                return "You are at PostExecute";
+            }
+
+            protected void onProgressUpdate(Integer...a){
+                super.onProgressUpdate(a);
+                Log.d(TAG + " onProgressUpdate", "You are in progress update ... " + a[0]);
+            }
+
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                Log.d(TAG + " onPostExecute", "" + result);
+            }
+        }
 }

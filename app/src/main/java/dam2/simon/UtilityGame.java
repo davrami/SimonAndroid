@@ -9,6 +9,12 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.widget.AdapterView;
 
+/**
+ * Clase utilitat amb metodes y informació estatica per resoldre
+ * funcions auxiliars a  la lógica de joc
+ */
+
+
 public abstract class UtilityGame {
     public static String Username ="Pepe2";
     public static String[] shape = {

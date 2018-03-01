@@ -13,6 +13,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Handler;
 
+/**
+ * Classe per gestiona l'objecte Game amb les dades principals de la partida
+ */
+
 public class Game {
     Date date;
     int Points;
@@ -153,7 +157,6 @@ public class Game {
 
                 if (responseClick.equals(correctShape)) {
                     //correcta
-
                     this.responseClickList.add(responseClick);
                     if (this.responseClickList.size() == this.levelList.size()) {
                         this.setPoints(this.getPoints() + 100);
@@ -163,13 +166,8 @@ public class Game {
                 } else { //incorrecta
                     this.simonView.gameOver();
                 }
-
-
             } catch (Exception e) {
-
             }
-
-
         } else {
             Toast.makeText(this.simonView, "wait...", Toast.LENGTH_SHORT).show();
         }
