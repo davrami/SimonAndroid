@@ -100,9 +100,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.home:
                 obrirActivity("home");
                 return true;
-            case R.id.play:
-                obrirActivity("play");
-                return true;
             case R.id.ayuda:
                 obrirActivity("ayuda");
                 return true;
