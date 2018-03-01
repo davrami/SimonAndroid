@@ -3,7 +3,7 @@ package dam2.simon;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
- * Classe Entitat que representa un Artista
+ * Classe Entitat que representa les puntuacions
  */
 
 @IgnoreExtraProperties

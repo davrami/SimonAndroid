@@ -99,8 +99,8 @@ public class HomeActivity extends AppCompatActivity{
                     puntuaciones.add(puntuacion_ac);
                 }
 
-                Lista_Puntuacion artistaAdapter = new Lista_Puntuacion(HomeActivity.this, puntuaciones);
-                llistaPuntuacio.setAdapter(artistaAdapter); //Asignamos las puntuaciones al ListView
+                Lista_Puntuacion puntuacionAdapter = new Lista_Puntuacion(HomeActivity.this, puntuaciones);
+                llistaPuntuacio.setAdapter(puntuacionAdapter); //Asignamos las puntuaciones al ListView
             }
 
             @Override
