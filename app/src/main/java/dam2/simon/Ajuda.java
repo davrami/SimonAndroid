@@ -41,14 +41,14 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajuda);
 
-        myView = new MyView(this);
+        myView = new MyView(this); //Creamos la View, para hacer el Canvas
 
         intent = new Intent(this, UtilityMusic.class);
         intent.putExtra("operacio", "inici");
         //startService(intent);
         this.btMusic  = findViewById(R.id.music);
 
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){//Detectamos la orientación del movil, y inicmoa el Fragment 1 o 2
             fr2 fragmento2 = new fr2();
             this.getFragmentManager().beginTransaction()
                     .replace(R.id.contenedor, fragmento2, null)
@@ -63,7 +63,7 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
         }
 
         View_Fot = (ViewPager) findViewById(R.id.myView);
-        View_Fot.setAdapter(new PagerAdapter() {
+        View_Fot.setAdapter(new PagerAdapter() {//Adaptador para el canvas
 
             @Override
             public Object instantiateItem(ViewGroup container, int position) {

@@ -44,9 +44,9 @@ public class HomeActivity extends AppCompatActivity{
     Button btMusic;
     public static final String NOM = "dam2.fje.edu.nom";
     public static final String ID = "dam2.fje.edu.id";
-    List<Info_Puntuacion> artistes;
-    ListView llistaArtistes;
-    DatabaseReference DBArtistes;
+    List<Info_Puntuacion> puntuaciones;
+    ListView llistaPuntuacio;
+    DatabaseReference DBPuntuaciones;
     EditText UserNom;
 
     @Override
@@ -59,15 +59,17 @@ public class HomeActivity extends AppCompatActivity{
         //startService(intent);
         this.btMusic  = findViewById(R.id.music);
 
+        //Animación XML
         TextView texto = (TextView) findViewById(R.id.textView);
         Animation animacion = AnimationUtils.loadAnimation(this,
                 R.anim.animacion);
         texto.startAnimation(animacion);
+
         UserNom = (EditText) findViewById(R.id.UserName_Ed);
         Button btJug = (Button) findViewById(R.id.Bot_Jug);
         btJug.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //Cuando hacemos clic sobre el botón y hay escrito un Nombre, iniciamos una nueva pantalla
                 if(UserNom.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),"Escribe un nombre", Toast.LENGTH_LONG).show();
                 }else{
@@ -83,22 +85,22 @@ public class HomeActivity extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
-        DBArtistes = FirebaseDatabase.getInstance().getReference("puntuaciones");
-        llistaArtistes = (ListView) findViewById(R.id.llistatPuntuacions);
-        artistes = new ArrayList<>();
-        DBArtistes.addValueEventListener(new ValueEventListener() {
+        DBPuntuaciones = FirebaseDatabase.getInstance().getReference("puntuaciones"); //Leemos las puntucaiones guardadas en el FireBase
+        llistaPuntuacio = (ListView) findViewById(R.id.llistatPuntuacions);
+        puntuaciones = new ArrayList<>();
+        DBPuntuaciones.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                artistes.clear();
+                puntuaciones.clear();
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Info_Puntuacion artista = postSnapshot.getValue(Info_Puntuacion.class);
-                    artistes.add(artista);
+                    Info_Puntuacion puntuacion_ac = postSnapshot.getValue(Info_Puntuacion.class);
+                    puntuaciones.add(puntuacion_ac);
                 }
 
-                Lista_Puntuacion artistaAdapter = new Lista_Puntuacion(HomeActivity.this, artistes);
-                llistaArtistes.setAdapter(artistaAdapter);
+                Lista_Puntuacion artistaAdapter = new Lista_Puntuacion(HomeActivity.this, puntuaciones);
+                llistaPuntuacio.setAdapter(artistaAdapter); //Asignamos las puntuaciones al ListView
             }
 
             @Override

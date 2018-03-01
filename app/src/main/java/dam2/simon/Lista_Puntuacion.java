@@ -1,7 +1,6 @@
 package dam2.simon;
 
 import android.app.Activity;
-import android.icu.text.IDNA;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,26 +15,26 @@ import java.util.List;
 
 public class Lista_Puntuacion extends ArrayAdapter<Info_Puntuacion> {
     private Activity context;
-    List<Info_Puntuacion> artistes;
+    List<Info_Puntuacion> puntuaciones;
 
     public Lista_Puntuacion(Activity context, List<Info_Puntuacion> artistes) {
-        super(context, R.layout.m18_llista, artistes);
+        super(context, R.layout.lista, artistes);
         this.context = context;
-        this.artistes = artistes;
+        this.puntuaciones = artistes;
     }
 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.m18_llista, null, true);
+        View listViewItem = inflater.inflate(R.layout.lista, null, true);
 
         TextView nom = (TextView) listViewItem.findViewById(R.id.nom);
-        TextView genere = (TextView) listViewItem.findViewById(R.id.genere);
+        TextView puntos = (TextView) listViewItem.findViewById(R.id.puntos);
 
-        Info_Puntuacion artist = artistes.get(position);
+        Info_Puntuacion artist = puntuaciones.get(position);
         nom.setText(artist.getNom());
-        genere.setText("Puntuación:" + artist.getId() + " puntos");
+        puntos.setText("Puntuación:" + artist.getId() + " puntos");
 
         return listViewItem;
     }

@@ -11,7 +11,7 @@ public class Info_Puntuacion {
 
     private int id;
     private String nom;
-
+    //Info para devolver los valores para asignar al ListView
     public Info_Puntuacion(){
     }
 

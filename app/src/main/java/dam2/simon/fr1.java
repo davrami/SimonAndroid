@@ -78,15 +78,16 @@ public class fr1 extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_fr1, container, false);
+        View v = inflater.inflate(R.layout.fragment_fr1, container, false); //Cremos un View para poder recuperar los objetos
         this.imageHelp = (ImageView) v.findViewById(R.id.imageHelp);
         this.ajuda = (TextView) v.findViewById(R.id.Textajuda);
         this.afegir = (Button) v.findViewById(R.id.afegir);
         afegir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Vamos rotando por las imágenes y textos de la ayuda
                 if(cont == 0){
-                    imageHelp.setImageResource(R.drawable.img2);
+                    imageHelp.setImageResource(R.drawable.img2);    //Asignamos una nueva imagen, y cambiamos el texto
                     ajuda.setText("Van saliendo imagenes, aleatoriamente, y cuando termina, tienes que repetir el proceso");
                     cont = 1;
                 }else if(cont ==1){

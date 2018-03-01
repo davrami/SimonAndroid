@@ -78,8 +78,9 @@ public class fr2 extends Fragment {
         afegir2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Vamos rotando por las imágenes y textos de la ayuda
                 if(cont2 == 0){
-                    imageHelp2.setImageResource(R.drawable.img2);
+                    imageHelp2.setImageResource(R.drawable.img2);//Asignamos una nueva imagen, y cambiamos el texto
                     ajuda2.setText("Van saliendo imagenes, aleatoriamente, y cuando termina, tienes que repetir el proceso");
                     cont2 = 1;
                 }else if(cont2 ==1){

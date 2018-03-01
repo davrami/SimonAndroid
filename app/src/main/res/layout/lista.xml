@@ -11,7 +11,7 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:id="@+id/genere"
+        android:id="@+id/puntos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="drama"
