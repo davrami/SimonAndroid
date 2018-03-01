@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +78,6 @@ public class fr1 extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View v = inflater.inflate(R.layout.fragment_fr1, container, false);
         this.imageHelp = (ImageView) v.findViewById(R.id.imageHelp);
         this.ajuda = (TextView) v.findViewById(R.id.Textajuda);
@@ -86,21 +87,22 @@ public class fr1 extends Fragment{
             public void onClick(View v) {
                 if(cont == 0){
                     imageHelp.setImageResource(R.drawable.img2);
-                    ajuda.setText("Vertical: \nVan saliendo imagenes, aleatoriamente, y cuando termina, tienes que repetir el proceso");
+                    ajuda.setText("Van saliendo imagenes, aleatoriamente, y cuando termina, tienes que repetir el proceso");
                     cont = 1;
                 }else if(cont ==1){
                     afegir.setText("Inicio");
                     imageHelp.setImageResource(R.drawable.img3);
-                    ajuda.setText("Vertical: \nEn caso que falles, habrá terminado la partida, y se registrará tu puntuación");
+                    ajuda.setText("En caso que falles, habrá terminado la partida, y se registrará tu puntuación");
                     cont=2;
                 }else{
                     afegir.setText("Siguiente");
                     imageHelp.setImageResource(R.drawable.img1);
-                    ajuda.setText("Vertical: \nUna vez estas en la pantalla de inicio, para empezar a jugar tienes que hacer clic sobre play");
+                    ajuda.setText("Una vez estas en la pantalla de inicio, para empezar a jugar tienes que hacer clic sobre play");
                     cont=0;
                 }
             }
         });
+
         return v;
     }
 

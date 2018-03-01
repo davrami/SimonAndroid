@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -29,11 +33,15 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
     Button afegir;
     int cont=0;
     TextView ajuda;
+    MyView myView;
+    ViewPager View_Fot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajuda);
+
+        myView = new MyView(this);
 
         intent = new Intent(this, UtilityMusic.class);
         intent.putExtra("operacio", "inici");
@@ -54,7 +62,36 @@ public class Ajuda  extends AppCompatActivity implements fr1.OnFragmentInteracti
                     .commit();
         }
 
+        View_Fot = (ViewPager) findViewById(R.id.myView);
+        View_Fot.setAdapter(new PagerAdapter() {
 
+            @Override
+            public Object instantiateItem(ViewGroup container, int position) {
+                LayoutInflater inflater = LayoutInflater.from(Ajuda.this);
+                container.addView(myView);
+                return myView;
+            }
+
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                container.removeView((View)object);
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return "";
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+
+            @Override
+            public boolean isViewFromObject(View view, Object object) {
+                return view == object;
+            }
+        });
 
 
     }
